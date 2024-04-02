@@ -1,0 +1,441 @@
+.group {
+  position: relative;
+}
+
+.apartado-producto {
+  text-align: right;
+}
+
+.input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #000000;
+  background: transparent;
+}
+
+
+#fecha {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 150px;
+  border: none;
+  border-bottom: 2px solid #000000;
+  background: transparent;
+
+}
+
+#id {
+  font-size: 16px;
+  padding: 5px 5px 5px 5px;
+  display: block;
+  width: 27%;
+  border: none;
+  border-bottom: 2px solid rgb(0, 0, 0);
+  background: transparent;
+}
+
+.input:focus {
+  outline: none;
+}
+
+label {
+  color: #999;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.input:focus~label,
+.input:valid~label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264AE;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.bar:before,
+.bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+.input:focus~.bar:before,
+.input:focus~.bar:after {
+  width: 50%;
+}
+
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.input:focus~.highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: #5264AE;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+
+.shadow {
+  width: 100%;
+  border-radius: 0px;
+  height: 10%;
+
+}
+
+/*Botones*/
+#boton {
+  display: flex;
+  margin-left: 110px;
+  position: relative;
+  top: -30px;
+  width: 90px;
+  border-radius: 10px;
+}
+
+.btn {
+  width: 169px;
+  height: 50px;
+  background: linear-gradient(to top, #071820, #071820, #071820);
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.btn span {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: top 0.5s;
+}
+
+.btn-text-one {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.btn-text-two {
+  position: absolute;
+  width: 100%;
+  top: 150%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+button:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px #053F5C;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+
+#titulo {
+  margin-right: 10px;
+}
+
+.tamano {
+  width: 800px;
+  height: 800px;
+  margin-left: 3%;
+}
+
+
+.cover {
+  height: 590px;
+  box-shadow: 5px 5px 5px #888888;
+  background-image: url("../Images/GeekEngineer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: -24px;
+}
+
+.text-index_ {
+  color: white;
+  padding-left: 60%;
+  position: relative;
+  top: -140px;
+  font-family: 'Courier New', monospace;
+}
+
+
+.apartado-rep {
+  right: 10px;
+  position: relative;
+  top: 200px;
+  position: fixed;
+
+}
+
+.apartado-rep a {
+  color: #fff;
+  background-color: #071820;
+  font-size: 20px;
+  text-decoration: none;
+  display: block;
+  margin: 5px;
+  padding: 20px;
+  width: 280px;
+  height: 70px;
+}
+
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  grid-gap: 30px;
+}
+
+.cardBox .card
+{
+  position: relative;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
+}
+
+.cardBox .card .numbers
+{
+  position: relative;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #071820;
+}
+
+.cardBox .card .cardName
+{
+  color: #999;
+  font-size: 1.0rem;
+}
+
+.cardBox .card .iconBx
+{
+  font-size: 3.5rem;
+  flex-direction: row-reverse;
+}
+
+.details-board
+{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+
+.details-board .recentOrders
+{
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  background: #fff;
+  padding: 20px;
+  box-sizing: 0 7px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.cardHeader
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cardHeader h2
+{
+  font-weight: 600;
+  color: #071820;
+}
+
+.btn-board
+{
+  position: relative;
+  padding: 0px 10px;
+  background: #071820;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.details-board table
+{
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.details-board table thead td
+{
+  font-weight: 600;
+}
+
+.details-board .recentOrders table thead tr
+{
+  color: #222;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details-board .recentOrders table tr td
+{
+  padding: 10px;
+}
+
+.details-board .recentOrders table tr td:last-child
+{
+  text-align: end;
+}
+
+.details-board .recentOrders table tr td:nth-child(2)
+{
+  text-align: end;
+}
+
+.details-board .recentOrders table tr td:nth-child(3)
+{
+  text-align: center;
+}
+
+.Grafic
+{
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+#icons-s
+{
+  padding-left: 80%;
+}
+
+
+.b-posi
+{
+  padding-left: 45%;
+  position: relative;
+  top: -20px;
+}
+
+
+.ubi-boton-add-restar-inventario
+{ 
+  margin-left: 65%;
+  position: relative;
+  top: -50px;
+}
+
+#botones-inventario-mas
+{
+  width: 50px;
+  height: 40px;
+  margin-left: 66%;
+  position: relative;
+  top: -80px;
+  border-radius: 5px;
+}
+
+#botones-inventario-menos
+{
+  width: 50px;
+  height: 40px;
+  position: relative;
+  top: -80px;
+  left: 10px;
+  border-radius: 5px;
+}
+
+#ubi-boton-add-inventario
+{
+  width: 100px;
+  height: 50px;
+  position: relative;
+  border-radius: 5px;
+}
+#ubi-boton-restar-inventario
+{
+  width: 100px;
+  height: 50px;
+  position: relative;
+  border-radius: 5px;
+}
+
+#input-tamanio
+{
+  width: 150px;
+}
+#venta-label-tamanio
+{
+  padding-left:30px;
+}
+
+#botton-tamanio{
+  width: 50px;
+}

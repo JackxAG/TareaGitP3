@@ -1,0 +1,146 @@
+@page "/f_FacturaVenta"
+@page "/f_Factura/{ventaId:int}"
+@inject VentasBLL VentasBLL
+@inject ClienteBLL ClienteBLL
+@inject ProductoBLL ProductoBLL
+@inject IJSRuntime jsRunTime
+
+<div id="app" class="col-11">
+
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <i class="fa fa-desktop"></i>
+                            </td>
+                            <td>
+                                Factura#: @venta.VentaId<br>
+                                Created: @venta.Fecha<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr class="">
+                            <td>
+                                Nombre de la empresa:<br>
+                                Dirección:<br>
+                                Correo electrónico: <br>
+                                Nombre del cliente: <br>
+
+                            </td>
+
+                            <td>
+                                GeekEngineer<br>
+                                ****************<br>
+                                GeekEngineer@gmail.com <br>
+                                @ClienteBLL.Buscar(venta.ClienteId)?.Nombre<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <table class="table table-light table-striped">
+                <thead class="thead">
+                    <tr class="table text-center bg-inventariocolor">
+                        <th class="border border-3">Producto</th>
+                        <th class="border border-3">Cantidad</th>
+                        <th class="border border-3">Precio</th>
+                        <th class="border border-3">ITBIS</th>
+                        <th class="border border-3">Descuento</th>
+                        <th class="border border-3">Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (venta.ventasDetalle is not null)
+                    {
+                        @foreach (var item in venta.ventasDetalle)
+                        {
+                            <tr class="text-center">
+                                <td>@ProductoBLL.Buscar(item.ProductoId)?.Nombre</td>
+                                <td>@item.Cantidad</td>
+                                <td>RD$ @ProductoBLL.Buscar(item.ProductoId)?.Precio</td>
+                                <td>@ProductoBLL.Buscar(item.ProductoId)?.ITBIS %</td>
+                                <td>@ProductoBLL.Buscar(item.ProductoId)?.Descuento %</td>
+                                <td>RD$ @item.Importe</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+           <div class="custom-card-body">
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <div class="custom-form-group">
+                            <div class="custom-input-group">
+                                <div class="custom-input-group-prepend">
+                                    <span class="custom-input-group-text">SubTotal</span>
+                                </div>
+                                <input type="number" class="custom-input" value="@detalle.SubTotal" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="custom-col">
+                        <div class="custom-form-group">
+                            <div class="custom-input-group">
+                                <div class="custom-input-group-prepend">
+                                    <span class="custom-input-group-text">Total</span>
+                                </div>
+                                <input type="number" class="custom-input" value="@venta.Total" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </table>
+    <button class="btn btn-danger mr-2 hideWhenPrint" id="botton-tamanioo" @onclick="Imprimir"><i class="fa fa-print"></i></button>
+
+
+    </div>
+
+
+</div>
+
+
+@code {
+    [Parameter]
+    public int VentaId { get; set; }
+    public Ventas venta { get; set; } = new Ventas();
+    public VentasDetalle detalle = new VentasDetalle();
+
+    protected override void OnInitialized()
+    {
+        if (VentaId > 0)
+        {
+            this.venta.VentaId = VentaId;
+            this.Buscar();
+        }
+    }
+
+    private void Buscar()
+    {
+        if (venta!.VentaId > 0)
+        {
+            var encontrado = VentasBLL.Buscar(venta.VentaId);
+            if (encontrado != null)
+            {
+                
+                this.venta = encontrado;
+            }
+        }
+    }
+
+    private void Imprimir()
+    {
+        jsRunTime.InvokeVoidAsync("Facturar");
+    }
+}

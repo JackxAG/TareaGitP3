@@ -1,0 +1,43 @@
+@page "/c_compra"
+@inject ComprasBLL ComprasBLL
+@attribute [Authorize]
+
+<PageTitle>Consulta compras</PageTitle>
+
+
+<h1 class="text-center">Consulta Compras</h1>
+
+<button type="submit" class="btn btn-outline-success"><span class="oi oi-document"></span>
+    Generar reporte</button>
+
+@* <div class="card col-lg-8 mx-auto"> *@
+<RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+    FilterMode="FilterMode.Advanced" AllowPaging="true" PageSize="4" PagerHorizontalAlign="HorizontalAlign.Left"
+    AllowSorting="true" Data="@listaCompras" ColumnWidth="180px" TItem="Compras">
+
+    <Columns>
+        <RadzenGridColumn TItem="Compras" Property="CompraId" Title="Compra Id" />
+        <RadzenGridColumn TItem="Compras" Property="ProveedorId" Title="Proveedor Id" />
+        <RadzenGridColumn TItem="Compras" Property="Fecha" Title="Fecha" />
+        <RadzenGridColumn TItem="Compras" Property="Total" Title="Total">
+        </RadzenGridColumn>
+
+        <RadzenGridColumn TItem="Compras" Title="Editar">
+            <Template Context="Compra">
+                <RadzenLink Path=@($"/r_compra/{Compra.CompraId}") Text="Ver">
+                    <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="Ver" />
+                </RadzenLink>
+            </Template>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>
+@* </div> *@
+
+@code {
+    List<Compras> listaCompras = new List<Compras>();
+
+    protected override void OnInitialized()
+    {
+        listaCompras = ComprasBLL.GetList(o => true && o.Status == true);
+    }
+}

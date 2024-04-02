@@ -1,0 +1,63 @@
+@page "/c_producto"
+@inject ProductoBLL ProductoBLL
+@inject CategoriaBLL CategoriaBLL
+@inject ProveedorBLL ProveedorBLL
+@attribute [Authorize]
+@inject NotificationService notify
+
+<PageTitle>Consulta Productos</PageTitle>
+
+<h1 class="text-center">Consulta Productos</h1>
+
+<button type="submit" class="btn btn-outline-success"><span class="oi oi-document"></span>
+    Generar reporte</button>
+<div>
+    @if (listaProductos == null)
+    {
+        <p><em>Sin datos para mostrar...</em></p>
+    }
+    else
+    {
+        <RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+            FilterMode="FilterMode.Advanced" AllowPaging="true" PageSize="4" AllowSorting="true" Data="@listaProductos"
+            TItem="Productos" ColumnWidth="100px">
+
+            <Columns>
+                <RadzenGridColumn TItem="Productos" Property="ProductoId" Title="ID" />
+                <RadzenGridColumn TItem="Productos" Property="Nombre" Title="Nombre" />
+                <RadzenGridColumn TItem="Productos" Property="Fecha" Title="Fecha" />
+                <RadzenGridColumn TItem="Productos" Property="Costo" Title="Costo" />
+                <RadzenGridColumn TItem="Productos" Property="Precio" Title="Precio" />
+                <RadzenGridColumn TItem="Productos" Property="Ganancias" Title="Ganancias" />
+                <RadzenGridColumn TItem="Productos" Property="ITBIS" Title="ITBIS" />
+                <RadzenGridColumn TItem="Productos" Property="CategoriaId" Title="CategoriaId" />
+                <RadzenGridColumn TItem="Productos" Property="ProveedorId" Title="ProveedorId" />
+                <RadzenGridColumn TItem="Productos" Property="Existencia" Title="Existencia" />
+                <RadzenGridColumn TItem="Productos" Property="Ubicacion" Title="Ubicacion" />
+                <RadzenGridColumn TItem="Productos" Property="CodigoBarra" Title="Codigo de barra" />
+                <RadzenGridColumn TItem="Productos" Title="Descuento">
+                    <Template Context="producto">
+                        <span>@producto.Descuento%</span>
+                    </Template>
+                </RadzenGridColumn>
+
+                <RadzenGridColumn TItem="Productos" Title="Editar">
+                    <Template Context="Producto">
+                        <RadzenLink Path=@($"/r_producto/{Producto.ProductoId}") Text="Ver">
+                            <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="Ver" />
+                        </RadzenLink>
+                    </Template>
+                </RadzenGridColumn>
+            </Columns>
+        </RadzenGrid>
+    }
+</div>
+
+@code {
+    List<Productos> listaProductos = new List<Productos>();
+
+    protected override void OnInitialized()
+    {
+        listaProductos = ProductoBLL.GetList(o => true && o.Status == true);
+    }
+}

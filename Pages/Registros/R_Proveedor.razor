@@ -1,0 +1,199 @@
+@page "/r_proveedor"
+@page "/r_proveedor/{ProveedorId:int}"
+@inject ProveedorBLL ProveedorBLL
+@inject NotificationService notify
+@inject NavigationManager NavigationManager
+@attribute [Authorize]
+
+<EditForm Model="proveedor" OnValidSubmit="Guardar"> 
+    <DataAnnotationsValidator />
+    <div class="card col-lg-7 mx-auto">
+        <div class="shadow">
+            <div class="card-header">
+                <h1 class="text-center"><strong>Registro de Proveedor</strong></h1>
+            </div>
+            <br>
+            <br>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            <InputDate required="" @bind-Value="proveedor.Fecha" class="input" id="fecha" />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Fecha</label>
+                            <ValidationMessage For="@(() => proveedor.Fecha)" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            <InputText required="" @bind-Value="proveedor.Nombre" class="input" />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Nombre</label>
+                            <ValidationMessage For="@(() => proveedor.Nombre)" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            <InputText required="" @bind-Value="proveedor.RNC" class="input" />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>RNC</label>
+                            <ValidationMessage For="@(() => proveedor.RNC)" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            <InputText required="" @bind-Value="proveedor.Direccion" class="input" />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Dirección</label>
+                            <ValidationMessage For="@(() => proveedor.Direccion)" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            <InputText required="" @bind-Value="proveedor.Telefono" class="input" />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Teléfono</label>
+                            <ValidationMessage For="@(() => proveedor.Telefono)" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            <InputText required="" @bind-Value="proveedor.Email" class="input" />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Email</label>
+                            <ValidationMessage For="@(() => proveedor.Email)" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            @*Botones*@
+            <div class="card-footer">
+                <div class="form-group text-center" display: inline-block>
+                    <button type="button" class="btn btn-outline-primary" @onclick="Nuevo"><span
+                            class="oi oi-file"></span>
+                        Nuevo</button>
+                    <button type="submit" class="btn btn-outline-success"><span class="oi oi-document"></span>
+                        Guardar</button>
+                    <button type="button" class="btn btn-outline-danger" @onclick="Eliminar"><span
+                            class="oi oi-delete"></span>
+                        Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int ProveedorId { get; set; }
+    public Proveedores proveedor { get; set; } = new Proveedores();
+
+    protected override void OnInitialized()
+    {
+        if (ProveedorId > 0)
+        {
+            this.proveedor.ProveedorId = ProveedorId;
+            this.Buscar();
+        }
+    }
+
+    public void Nuevo()
+    {
+        proveedor = new Proveedores();
+        notify.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
+        NavigationManager.NavigateTo($"/r_proveedor");
+    }
+
+    bool Validar()
+    {
+        bool validar = true;
+
+        if (ProveedorBLL.ExisteRNC(proveedor) == false)
+        {
+            notify.ShowNotification("El RNC ingresado ya está registrado.", NotificationSeverity.Warning);
+            validar = false;
+        }
+        if (ProveedorBLL.ExisteNombreProveedor(proveedor) == false)
+        {
+            notify.ShowNotification("Ya hay un proveedor registrado con ese nombre.", NotificationSeverity.Warning);
+            validar = false;
+        }
+        if (ProveedorBLL.ExisteEmail(proveedor) == false)
+        {
+            notify.ShowNotification("Ya está registrado ese email, intente de nuevo.", NotificationSeverity.Warning);
+            validar = false;
+        }
+        if (ProveedorBLL.ExisteTelefono(proveedor) == false)
+        {
+            notify.ShowNotification("Ya está registrado ese número de teléfono, intente de nuevo.", NotificationSeverity.Warning);
+            validar = false;
+        }
+
+        return validar;
+    }
+
+    void Guardar()
+    {
+
+        if (!Validar()) { return; }
+
+        if (ProveedorBLL.Guardar(proveedor))
+        {
+            notify.ShowNotification("Fue guardado correctamente.");
+            proveedor = new Proveedores();
+            NavigationManager.NavigateTo($"/r_proveedor");
+        }
+        else
+        {
+            notify.ShowNotification("No fue guardado, intentar nuevamente.", NotificationSeverity.Error);
+        }
+
+    }
+    private void Buscar()
+    {
+        if (proveedor!.ProveedorId > 0)
+        {
+            var encontrado = ProveedorBLL.Buscar(proveedor);
+
+            if (encontrado != null)
+            {
+                notify.ShowNotification("Se ha encontrado con éxito", NotificationSeverity.Success);
+                this.proveedor = encontrado;
+            }
+            else
+            {
+                notify.ShowNotification("El ID ingresado no ha sido encontrado.", NotificationSeverity.Error);
+            }
+        }
+    }
+
+    public void Eliminar()
+    {
+        if (ProveedorBLL.Eliminar(proveedor.ProveedorId))
+        {
+            notify.ShowNotification("Se ha eliminado con éxito.", NotificationSeverity.Success);
+            proveedor = new Proveedores();
+        }
+        else
+        {
+            notify.ShowNotification("No hay elementos para borrar.", NotificationSeverity.Warning);
+            return;
+        }
+    }
+}

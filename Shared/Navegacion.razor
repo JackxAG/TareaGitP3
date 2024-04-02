@@ -1,0 +1,147 @@
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #071820;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fa fa-laptop"></i>
+        </a>
+        <a class="navbar-brand" href="#">HomeHelpy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                </li>
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="clientesDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Clientes
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="clientesDropdown">
+                                <li><a class="dropdown-item" href="r_cliente">Registrar Cliente</a></li>
+                                <li><a class="dropdown-item" href="c_cliente">Consultar Clientes</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="facturasDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorías</a>
+                            <ul class="dropdown-menu" aria-labelledby="facturasDropdown">
+                                <li><a class="dropdown-item" href="r_categoria">Registrar Categoría</a></li>
+                                <li><a class="dropdown-item" href="c_categoria">Consultar Categorías</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="facturasDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Proveedores
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="facturasDropdown">
+                                <li><a class="dropdown-item" href="r_proveedor">Registrar Proveedor</a></li>
+                                <li><a class="dropdown-item" href="c_proveedor">Consultar Proveedores</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Productos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="productosDropdown">
+                                <li><a class="dropdown-item" href="r_producto">Registrar Producto</a></li>
+                                <li><a class="dropdown-item" href="c_producto">Consultar Productos</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="facturasDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Inventarios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="facturasDropdown">
+                                <li><a class="dropdown-item" href="r_inventario">Registrar Inventario</a></li>
+                                <li><a class="dropdown-item" href="c_inventario">Consultar Inventario</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="facturasDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Compras
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="facturasDropdown">
+                                <li><a class="dropdown-item" href="r_compra">Registrar Compra</a></li>
+                                <li><a class="dropdown-item" href="c_compra">Consultar Compras</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="facturasDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ventas</a>
+                            <ul class="dropdown-menu" aria-labelledby="facturasDropdown">
+                                <li><a class="dropdown-item" href="r_venta">Registrar Venta</a></li>
+                                <li><a class="dropdown-item" href="c_venta">Consultar Ventas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="facturasDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facturación</a>
+                            <ul class="dropdown-menu" aria-labelledby="facturasDropdown">
+                                <li><a class="dropdown-item" href="r_facturacion">Registrar Facturación</a></li>
+                                <li><a class="dropdown-item" href="c_facturacion">Consultar Facturaciones</a></li>
+                            </ul>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="facturasDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reportes</a>
+                            <ul class="dropdown-menu" aria-labelledby="facturasDropdown">
+                                <li><a class="dropdown-item" href="r_reporte_productosVendidos"> 10 Productos que más
+                                        ventas tienen</a></li>
+                                <li><a class="dropdown-item" href="r_reporte_rentabilidad">Rentabilidad</a></li>
+                                <li><a class="dropdown-item" href="r_reporte_productosMenosVendidos"> 10 Productos que menos
+                                        ventas tienen</a></li>
+                                <li><a class="dropdown-item" href="r_reporte_clienteConMasCompras"> 50 Clientes con mas compras</a></li>
+                                <li><a class="dropdown-item" href="r_reporte_VentasPorDia">Ventas por día</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="dashboard">Dashboard</a>
+                        </li>
+                        <form method="post" action="Identity/Account/Logout">
+                            <span class="nav-link" onclick="this.parentNode.submit();"
+                                style="cursor: pointer; position: fixed; top: 10px; right: 10px;">
+                                <span class="oi oi-account-logout" title='Cerrar sesión'></span>
+                                <p></p>
+                            </span>
+                        </form>
+                    </Authorized>
+                    <NotAuthorized>
+                        <form method="post" action="Identity/Account/Logout">
+                            <span class="nav-link" onclick="this.parentNode.submit();"
+                                style="cursor: pointer; position: fixed; top: 10px; right: 10px;">
+                                Iniciar Sesión
+                                <span class="oi oi-account-logout" title='Cerrar sesión'></span>
+                                <p></p>
+                            </span>
+                        </form>
+                    </NotAuthorized>
+                </AuthorizeView>
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

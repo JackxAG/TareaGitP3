@@ -1,0 +1,9 @@
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.csproj.AssemblyReference.cache
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.AssemblyInfoInputs.cache
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.AssemblyInfo.cs
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.csproj.CoreCompileInputs.cache
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.RazorAssemblyInfo.cache
+C:\Users\Hardware Gaming PC\Desktop\HomeHelpyy\obj\Debug\net7.0\HomeHelpy.RazorAssemblyInfo.cs

@@ -1,0 +1,152 @@
+@page "/dashboard"
+@inject ComprasBLL ComprasBLL
+@inject ClienteBLL ClienteBLL
+@inject VentasBLL VentasBLL
+@inject ProductoBLL ProductoBLL
+@using ChartJs.Blazor.PieChart
+@attribute [Authorize]
+
+<body class="body-board">
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">@CantidadCompras</div>
+                <div class="cardName">Compras</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="eye-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">@CantidadClientes</div>
+                <div class="cardName">Clientes</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="people-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">@CantidadVentas</div>
+                <div class="cardName">Ventas</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="bar-chart-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">@CantidadGanancias</div>
+                <div class="cardName">Ganancias</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="cash-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="details-board">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Productos a punto de terminarse</h2>
+                <a href="" class="btn-board">Ver todo</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Producto</td>
+                        <td>Ganancias</td>
+                        <td>Existencia</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in productosConMenorExistencia)
+                    {
+                        <tr>
+                            <td>@item.ProductoId</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Ganancias</td>
+                            <td>@item.Existencia</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @* ChartJS *@
+        <div class="Grafic">
+            <div class="cardHeader">
+                <h2>Top 3 productos con mas ganancias</h2>
+            </div>
+
+            <Chart Config="_configuracionPastel"></Chart>
+        </div>
+    </div>
+
+</body>
+
+@code {
+    private PieConfig? _configuracionPastel;
+    public int CantidadCompras { get; set; } = 0;
+    public int CantidadVentas { get; set; } = 0;
+    public int CantidadClientes { get; set; } = 0;
+    public double CantidadGanancias { get; set; } = 0;
+    public List<Productos> productosConMenorExistencia = new List<Productos>();
+    public List<Productos> productosConMasGanancias = new List<Productos>();
+
+
+    protected override void OnInitialized()
+    {
+        RealizarConfiguracionPastel();
+        CantidadCompras = ComprasBLL.GetList(o => true && o.Status == true).Count();
+        CantidadVentas = VentasBLL.GetList(o => true && o.Status == true).Count();
+        CantidadClientes = ClienteBLL.GetList(o => true && o.Status == true).Count();
+        var listaProductos = ProductoBLL.GetList(o => true && o.Status == true);
+        CantidadGanancias = listaProductos.Sum(c => c.Ganancias);
+
+        productosConMenorExistencia = listaProductos.OrderBy(p => p.Existencia).Take(5).ToList();
+
+        productosConMasGanancias = listaProductos.OrderByDescending(p => p.Ganancias).Take(3).ToList();
+    }
+
+    private void RealizarConfiguracionPastel()
+    {
+        _configuracionPastel = new PieConfig();
+
+        _configuracionPastel.Options = new PieOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Productos con mayores ganancias"
+                }
+            };
+
+        // Seleccionar solo los 3 primeros productos con mayores ganancias
+        var productosConMasGananciasLimitados = productosConMasGanancias.Take(3).ToList();
+
+        // Labels para las leyendas en el gráfico (nombre de los productos)
+        foreach (var item in productosConMasGananciasLimitados)
+        {
+            _configuracionPastel.Data.Labels.Add(item.Nombre); // Supongo que hay una propiedad "NombreProducto" en la clase
+        }
+
+        // Valores para el gráfico (valores de las ganancias)
+        var valoresGanancias = productosConMasGananciasLimitados.Select(p => p.Ganancias).Take(3).ToList();
+    PieDataset<double> dataset = new PieDataset<double>(valoresGanancias)
+    {
+        BackgroundColor = new[]
+        {
+            "#FF0000", // Rojo
+            "#0000FF", // Azul
+            "#FFFF00"  // Amarillo
+        }
+    };
+
+    _configuracionPastel.Data.Datasets.Add(dataset);
+    }
+
+}

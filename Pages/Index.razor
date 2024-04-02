@@ -1,0 +1,105 @@
+﻿@page "/"
+@using ChartJs.Blazor.PieChart
+<div class="cover d-flex justify-content-center align-items-center flex-column">
+
+</div>
+
+<body class="cuerpo">
+    <h1 class="text-center"></h1>
+    <div class="container">
+        <input type="radio" name="dot" id="one">
+        <input type="radio" name="dot" id="two">
+        <div class="main-card">
+            <div class="cards">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="img">
+                            <img src="images/jack.png" alt="Jack Gomez">
+                        </div>
+                        <div class="details">
+                            <div class="name">Jack Gomez</div>
+                            <div class="job">Full-Stack Developer</div>
+                        </div>
+                        <div class="media-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="far fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+</body>
+<footer class="pie-pagina">
+    <div class="grupo-1">
+        <div class="box">
+            <figure>
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                </a>
+            </figure>
+        </div>
+        <div class="box">
+            <h2>SOBRE NOSOTROS</h2>
+            <p>Correo: HomeHelpy@gmail.com</p>
+            <p>Teléfono: 1 (829)-234-1234</p>
+
+        </div>
+        <div class="box">
+            <h2>SÍGUENOS</h2>
+            <div class="red-social">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-youtube"></a>
+            </div>
+        </div>
+    </div>
+    <div class="grupo-2">
+        <small>&copy; 2023 <b>HomeHelpy</b> - Todos los Derechos Reservados.</small>
+    </div>
+</footer>
+
+@code {
+    private PieConfig? _configuracionPastel;
+
+    protected override void OnInitialized()
+    {
+        RealizarConfiguracionPastel();
+    }
+
+    private void RealizarConfiguracionPastel()
+    {
+        _configuracionPastel = new PieConfig();
+
+        _configuracionPastel.Options = new PieOptions
+        {
+            Responsive = true,
+            Title = new OptionsTitle
+            {
+                Display = true,
+                Text = "Mas vendidos"
+            }
+        };
+
+        foreach (var item in new[] { "Opción 1", "Opción 2", "Opción 3" })
+        {
+            _configuracionPastel.Data.Labels.Add(item);
+        }
+
+        PieDataset<int> dataset = new PieDataset<int>(new[] { 35, 50, 15 })
+        {
+            BackgroundColor = new[]
+            {
+                ColorUtil.ColorHexString(255,0,0), //Rojo
+                ColorUtil.ColorHexString(0,0,255), //Azul
+                ColorUtil.ColorHexString(255,255,0) //Amarillo
+            }
+        };
+
+        _configuracionPastel.Data.Datasets.Add(dataset);
+    }
+}

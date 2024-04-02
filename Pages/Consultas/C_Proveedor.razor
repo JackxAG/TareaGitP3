@@ -1,0 +1,54 @@
+@page "/c_proveedor"
+@inject ProveedorBLL ProveedorBLL
+@attribute [Authorize]
+
+<PageTitle>Consulta proveedor</PageTitle>
+
+
+<h1 class="text-center">Consulta Proveedores</h1>
+
+<button type="submit" class="btn btn-outline-success"><span class="oi oi-document"></span>
+    Generar reporte</button>
+
+<div>
+    @if (listaProveedores == null)
+    {
+        <p><em>Sin datos para mostrar...</em></p>
+    }
+    else
+    {
+        <RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+            FilterMode="FilterMode.Advanced" AllowPaging="true" PageSize="4" PagerHorizontalAlign="HorizontalAlign.Left"
+            AllowSorting="true" Data="@listaProveedores" ColumnWidth="130px">
+
+            <Columns>
+                <RadzenGridColumn TItem="Proveedores" Property="ProveedorId" Title="ID" />
+                <RadzenGridColumn TItem="Proveedores" Property="Nombre" Title="Nombre" />
+                <RadzenGridColumn TItem="Proveedores" Property="RNC" Title="RNC" />
+                <RadzenGridColumn TItem="Proveedores" Property="Fecha" Title="Fecha" />
+                <RadzenGridColumn TItem="Proveedores" Property="Telefono" Title="Teléfono" />
+                <RadzenGridColumn TItem="Proveedores" Property="Direccion" Title="Dirección" />
+                <RadzenGridColumn TItem="Proveedores" Property="Email" Title="Email">
+                </RadzenGridColumn>
+
+                <RadzenGridColumn TItem="Proveedores" Title="Editar">
+                    <Template Context="Proveedor">
+                        <RadzenLink Path=@($"/r_proveedor/{Proveedor.ProveedorId}") Text="Ver">
+                            <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="Ver" />
+                        </RadzenLink>
+                    </Template>
+                </RadzenGridColumn>
+
+            </Columns>
+        </RadzenGrid>
+    }
+</div>
+
+@code {
+    List<Proveedores> listaProveedores = new List<Proveedores>();
+
+    protected override void OnInitialized()
+    {
+        listaProveedores = ProveedorBLL.GetList(o => true && o.Status == true);
+    }
+}

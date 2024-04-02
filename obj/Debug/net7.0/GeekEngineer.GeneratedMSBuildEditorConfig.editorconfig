@@ -1,0 +1,191 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = GeekEngineer
+build_property.RootNamespace = GeekEngineer
+build_property.ProjectDir = c:\Users\Hardware Gaming PC\Desktop\test\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = c:\Users\Hardware Gaming PC\Desktop\test
+build_property._RazorSourceGeneratorDebug = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Categoria.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfQ2F0ZWdvcmlhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Cliente.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfQ2xpZW50ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Compra.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfQ29tcHJhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Facturacion.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfRmFjdHVyYWNpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Inventario.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfSW52ZW50YXJpby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Producto.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfUHJvZHVjdG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Proveedor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfUHJvdmVlZG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Consultas/C_Venta.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfVmVudGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/FacturaVenta.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmFjdHVyYVZlbnRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_categoria.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfY2F0ZWdvcmlhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_cliente.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfY2xpZW50ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_compra.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfY29tcHJhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_Facturacion.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfRmFjdHVyYWNpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_inventario.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfaW52ZW50YXJpby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_Producto.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfUHJvZHVjdG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_Proveedor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfUHJvdmVlZG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Registros/R_venta.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cm9zXFJfdmVudGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Reportes/AnalisisRentabilidad.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0ZXNcQW5hbGlzaXNSZW50YWJpbGlkYWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Reportes/ClientesConMasCompras.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0ZXNcQ2xpZW50ZXNDb25NYXNDb21wcmFzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Reportes/ProductosMasVendidos.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0ZXNcUHJvZHVjdG9zTWFzVmVuZGlkb3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Reportes/ProductosMenosVendidos.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0ZXNcUHJvZHVjdG9zTWVub3NWZW5kaWRvcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Reportes/VentasPorDia.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0ZXNcVmVudGFzUG9yRGlhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Shared/LoginDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Shared/Navegacion.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdmVnYWNpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-q7dquijtdf
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ioiodg6civ
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Areas/Identity/Pages/Account/LogOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dPdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Areas/Identity/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Hardware Gaming PC/Desktop/test/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

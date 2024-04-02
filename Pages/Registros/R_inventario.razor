@@ -1,0 +1,286 @@
+@page "/r_inventario"
+@page "/r_inventario/{inventarioId:int}"
+@inject ProductoBLL ProductoBLL
+@inject ProveedorBLL ProveedorBLL
+@inject InventarioBLL InventarioBLL
+@inject NotificationService notify
+@inject NavigationManager NavigationManager
+@attribute [Authorize]
+
+
+<EditForm Model="inventario">
+    <DataAnnotationsValidator />
+    <div class="card col-lg-7 mx-auto">
+        <div class="shadow">
+            <div class="card-header">
+                <h1 class="text-center"><strong>Registro de Inventario</strong></h1>
+            </div>
+            <br>
+            <br>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            <InputDate required="" @bind-Value="inventario.Fecha" class="input" />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Fecha</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="custom-group">
+                            <RadzenDropDown class="custom-dropdown"
+                                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true"
+                                Data=@ProductoList TextProperty="Nombre" Name="Producto" ValueProperty="ProductoId"
+                                AllowClear="true" @bind-Value=@inventario.ProductoId Placeholder="Producto"
+                            @onfocusin="ActualizarCodigoDeBarra" />
+                            <ValidationMessage For="@(() => inventario.ProductoId)" />
+                            <span class="custom-bar"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                        <div class="group">
+                            @if (inventario.CodigoBarra == string.Empty)
+                            {
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Código de barra</label>
+                            }
+                            <InputText required="" @bind-Value="inventario.CodigoBarra" class="input" readonly />
+                            <ValidationMessage For="@(() => inventario.CodigoBarra)" />
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                            <div class="group">
+                                <InputNumber required="" @bind-Value="Cantidad" class="input"  />
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Cantidad</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                            <div class="group">
+                                <InputNumber required="" @bind-Value="inventario.Existencia" class="input" />
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Existencia (Cantidad modificada: @inventario.CantidadAumentada)</label>
+                                <ValidationMessage For="@(() => inventario.Existencia)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-4 mb-2 mx-auto"></div>
+
+                    </div>
+                    <div class="ubi-boton-add-restar-inventario">
+                        <button type="button" class="btn btn-outline-success" id="ubi-boton-add-inventario" @onclick="ExistenciaAumento">Agregar</button>
+                        <button type="button" class="btn btn-outline-success" id="ubi-boton-restar-inventario"
+                        @onclick="ExistenciaResta">Restar</button>
+
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-2 col-md-4 mb-2 mx-auto">
+                            <div class="group">
+                                <InputNumber required="" @bind-Value="monto" class="input" />
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Monto</label>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="botones-inventario-mas-menos">
+                        <button type="button" class="btn btn-outline-success" id="botones-inventario-mas"
+                        @onclick="Aumentar" style="background: rgb(40, 151, 40);"><ion-icon
+                        name="add-outline"></ion-icon></button>
+                        <button type="button" class="btn btn-outline-success" id="botones-inventario-menos"
+                        @onclick="Disminuir" style="background: rgb(158, 4, 4);"><ion-icon
+                        name="remove-outline"></ion-icon></button> 
+                    </div>
+                </div>
+
+            </div>
+
+            @*Botones*@
+            <div class="card-footer">
+                <div class="form-group text-center" display: inline-block>
+                    <button type="button" class="btn btn-outline-primary" @onclick="Nuevo"><span
+                            class="oi oi-file"></span>
+                        Nuevo</button>
+                    <button type="button" class="btn btn-outline-success" @onclick="Guardar"><span class="oi oi-document"></span>
+                        Guardar</button>
+                    <button type="button" class="btn btn-outline-danger" @onclick="Eliminar"><span
+                            class="oi oi-delete"></span>
+                        Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public int inventarioId { get; set; }
+    public Inventarios inventario { get; set; } = new Inventarios();
+    List<Productos> ProductoList = new List<Productos>();
+    public int ExistenciaActual { get; set; } = 0;
+    public Productos producto = new Productos();
+    public int monto { get; set; }
+    public int Cantidad { get; set; }
+
+
+
+    protected override void OnInitialized()
+    {
+        if (inventarioId > 0)
+        {
+            this.inventario.InventarioId = inventarioId;
+            this.Buscar();
+        }
+
+        ProductoList = ProductoBLL.GetList(p => true && p.Status == true);
+    }
+
+    public void Nuevo()
+    {
+        inventario = new Inventarios();
+        notify.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
+        ExistenciaActual = 0;
+        monto = 0;
+        Cantidad = 0;
+        NavigationManager.NavigateTo($"/r_inventario");
+    }
+
+    private void Aumentar()
+    {
+        Cantidad += monto;
+    }
+    private void Disminuir()
+    {
+        if (Cantidad > 0 && monto < Cantidad)
+        {
+            Cantidad -= monto;
+        }
+        else
+        {
+            notify.ShowNotification("La cantidad no puede ser disminuida.", NotificationSeverity.Warning);
+        }
+            
+    }
+    private void ExistenciaAumento()
+    {
+        if(inventario.Existencia >= 0 && Cantidad > 0)
+        {
+            inventario.Existencia += Cantidad;
+            inventario.CantidadAumentada += Cantidad;
+            Cantidad = 0;
+            notify.ShowNotification("Se ha aumentado la existencia.", NotificationSeverity.Success);
+        }
+
+    }
+    private void ExistenciaResta()
+    {
+        if(inventario.Existencia >= 0 && Cantidad > 0 && Cantidad < inventario.Existencia)
+        {
+            inventario.Existencia -= Cantidad;
+            inventario.CantidadAumentada -= Cantidad;
+            Cantidad = 0;
+            notify.ShowNotification("Se ha restado la existencia.", NotificationSeverity.Success);
+        }
+        else
+        {
+            notify.ShowNotification("La cantidad que se desea restar, debe ser menor que la existencia.", NotificationSeverity.Warning);
+        }
+
+    }
+
+    private void ActualizarCodigoDeBarra()
+    {
+
+        var productoSeleccionado = ProductoList.FirstOrDefault(p => p.ProductoId == inventario.ProductoId);
+
+        if (productoSeleccionado != null)
+        {
+            inventario.Existencia = productoSeleccionado.Existencia;
+            inventario.CodigoBarra = productoSeleccionado.CodigoBarra;
+            ExistenciaActual = productoSeleccionado.Existencia;
+        }
+        else
+        {
+            inventario.Existencia = 0;
+            inventario.CodigoBarra = string.Empty;
+        }
+    }
+
+    bool Validar()
+    {
+        bool validar = true;
+
+        if (inventario.ProductoId == 0)
+        {
+            notify.ShowNotification("Debe seleccionar un producto.", NotificationSeverity.Warning);
+            validar = false;
+        }
+
+
+        return validar;
+    }
+
+    void Guardar()
+    {
+
+        if (!Validar()) { return; }
+
+        if (InventarioBLL.Guardar(inventario))
+        {
+            notify.ShowNotification("Fue guardado correctamente.");
+            inventario = new Inventarios();
+            NavigationManager.NavigateTo($"/r_inventario");
+        }
+        else
+        {
+            notify.ShowNotification("No fue guardado, verifique si ha modificado la existencia, si es asi y el error persiste, comuniquese con el tecnico encargado.", NotificationSeverity.Error);
+        }
+
+    }
+
+    private void Buscar()
+    {
+        if (inventario!.InventarioId > 0)
+        {
+            var encontrado = InventarioBLL.Buscar(inventario);
+            if (encontrado != null)
+            {
+                notify.ShowNotification("Se ha encontrado con éxito", NotificationSeverity.Info);
+                this.inventario = encontrado;
+            }
+        }
+    }
+
+    public void Eliminar()
+    {
+        if (InventarioBLL.Eliminar(inventario.InventarioId))
+        {
+            notify.ShowNotification("Se ha eliminado con éxito.", NotificationSeverity.Success);
+            inventario = new Inventarios();
+        }
+        else
+        {
+            notify.ShowNotification("No hay elementos para borrar.", NotificationSeverity.Warning);
+            return;
+        }
+    }
+}
